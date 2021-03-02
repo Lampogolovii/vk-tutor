@@ -1,13 +1,31 @@
-# Welcome to Defold
+VK + Defold = Money
 
-This project was created from the "empty" project template.
+Это простой пример того, как можно "завести" vk-интеграцию в Defold.
+Шаги простые:
 
-The settings in ["game.project"](defold://open?path=/game.project) are all the default. A bootstrap empty ["main.collection"](defold://open?path=/main/main.collection) is included.
+1. Создаем свой engine-template.html (копируем из built-ins) и добавляем вниз такую строчку:
 
-Check out [the documentation pages](https://defold.com/learn) for examples, tutorials, manuals and API docs.
+<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 
-If you run into trouble, help is available in [our forum](https://forum.defold.com).
+"Что за шаманизм? Откуда это всё?" - спросите вы.
+А я отвечу: "с их официального гита https://github.com/VKCOM/vk-bridge"
 
-Happy Defolding!
 
----
+
+2. Прописываем свой engine-templete.html в настройки проекта (называется эта опция .html Shell - странное название, тут я соглашусь)
+
+
+
+3. Теперь добавляем очень крутой ассет jstodef. (гит, почитайте, там все хорошо расписано https://github.com/AGulev/jstodef)
+
+
+
+4. Теперь либо копируем мой vkModule.lua, либо делаем что-то подобное на его базе. Смысл в том, что нужно уметь делать несколько вещей: инициализацию, рекламу, и несколько вк-шных штук типа "пригласи друга" и "положить на стену".
+
+
+
+5. Все готово, можно использовать. Не забудьте только внутри vkModule.lua наверху прописать свое приложение в значении appValue. Оно подтягивается внутрь и тогда все ссылки типа "положить на стену" будут вести на ваше приложение. 
+
+
+
+6. А! Ну и текст в VKWebAppShowWallPostBox в lua-модуле тоже можете свой положить. Это уже по желанию.
