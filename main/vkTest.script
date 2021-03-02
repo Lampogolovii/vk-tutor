@@ -1,0 +1,18 @@
+function init(self)
+	self.vk = require("main/vk/vkModule")
+	
+	self.vk.Init();
+	self.vk.ShowInterstitial();
+	self.vk.Share();
+	self.vk.ShareWall();
+	self.vk.AddFriend();
+end
+
+function final(self)
+end
+
+function update(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+end
