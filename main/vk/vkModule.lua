@@ -2,7 +2,7 @@
 
 local M = {}
 
-local appValue = "https://vk.com/app7767948";
+local appValue = "https://vk.com/app7783928";
 
 local function js_listener(self, message_id, message)
 	if message_id == "VKUserIdEvent" then
@@ -22,7 +22,7 @@ M.VKRun = function (jscode)
 end
 
 M.Init = function ()
-    if jstodef then
+	if jstodef then
 		jstodef.add_listener(js_listener)
 	end
 	M.VKRun("vkBridge.send('VKWebAppInit')");
@@ -46,6 +46,10 @@ end
 
 M.GetUserInfo = function()
 	M.VKRun('console.log("VK_UserInfo"); vkBridge.send("VKWebAppGetUserInfo", {}).then(data => { console.log(data); JsToDef.send("VKUserIdEvent", {id: data.id});} ).catch(error => console.log(error))');
+end
+
+M.ShowLeaderboards = function( value )
+	M.VKRun('console.log("VK_Leaderboards"); vkBridge.send("VKWebAppShowLeaderBoardBox", {"user_result":'..value..', "global":1}).then(data => { console.log(data); } ).catch(error => console.log(error))');
 end
 
 M.VkIntegrationApiGetUsers = function(vk_int_api_host, vk_int_api_port, vk_int_api_secret_path, api_id, user_ids, handle_response)

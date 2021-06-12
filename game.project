@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /main/main.collectionc
+main_collection = /main/demo-1/demo-1.collectionc
 
 [script]
 shared_state = 1
@@ -13,7 +13,7 @@ input_method = HiddenInputField
 
 [project]
 title = vk-tutor
-dependencies = https://github.com/AGulev/jstodef/archive/master.zip
+dependencies = https://github.com/AGulev/jstodef/archive/master.zip,https://github.com/Insality/druid/archive/master.zip
 
 [html5]
 htmlfile = /main/vk/vk_template.html
