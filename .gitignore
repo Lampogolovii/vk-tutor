@@ -8,3 +8,9 @@ Thumbs.db
 .project
 .cproject
 builtins
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

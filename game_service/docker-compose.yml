@@ -4,14 +4,19 @@ services:
 
   game_service:
     image: unclekairat/game-service:0.1.0
+    # Use image below instead for ARM-based Virtual Cloud Instances
+    #image: unclekairat/game-service:arm.0.1.0
     container_name: game_service
     environment:
+      # Feature to share HTML5 Games from /opt/games folder: disabled by default
+      SPRING_RESOURCES_ADD_MAPPINGS: "false"
+
       GAME_INTEGRATIONS_VK_CLIENT_SECRET: "rW..1C"
       GAME_INTEGRATIONS_VK_ACCESS_TOKEN: "e47..78"
       GAME_INTEGRATIONS_VK_SECRET_PATH: "G10ye3g"
     #  JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n"
     ports:
-      - 8080:8080
+      - 80:8080
     #  - 5005:5005
     volumes:
-      - '$PWD/../games:/opt/games:ro'
+      - '$PWD/games:/opt/games:ro'
