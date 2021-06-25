@@ -1,0 +1,2 @@
+Hello, World
+(place games in this dir to "CDN" them if SPRING_RESOURCES_ADD_MAPPINGS: "true")
