@@ -137,12 +137,13 @@ ssh -i my.key opc@xxx.xxx.xxx.xx
     ```
     ...
     environment:
-      GAME_INTEGRATIONS_VK_CLIENT_SECRET: "ВАШ_ЗАЩИЩЕННЫЙ_КЛЮЧ_ЗДЕСЬ"
-      GAME_INTEGRATIONS_VK_ACCESS_TOKEN: "ВАШ_СЕРВИСНЫЙ_КЛЮЧ_ДОСТУПА_ЗДЕСЬ"
+      GAME_INTEGRATIONS_VK_CLIENT_SECRET_7783928: "ВАШ_ЗАЩИЩЕННЫЙ_КЛЮЧ_ЗДЕСЬ"
+      GAME_INTEGRATIONS_VK_ACCESS_TOKEN_7783928: "ВАШ_СЕРВИСНЫЙ_КЛЮЧ_ДОСТУПА_ЗДЕСЬ"
       GAME_INTEGRATIONS_VK_SECRET_PATH: "ВАША_придуманная_уникальная_секретная_строка"
     ...
     ```
     Сохраните файл
+    > Также можно добавить интеграцию для более чем одной игры. Корректные названия ключей настроек формируются из строки "GAME_INTEGRATIONS_VK_CLIENT_SECRET_", "GAME_INTEGRATIONS_VK_ACCESS_TOKEN_" и ID вашего ВК приложения
 1. Запустите сервер командой 
 
     ```
@@ -228,11 +229,13 @@ ssh -i my.key opc@xxx.xxx.xxx.xx
 В коде игры в нужный момент (например, Game Over на уровне), нужно вызвать метод из Lua модуля `vkModule.lua`
 
 ```
+    local api_id = '7783928' -- api_id - id вашего приложения ВКонтакте, можно взять из настроек или из URL приложения (Например, https://vk.com/app7783928)
     local user_id = 295926976 -- user_id id пользователя ВКонтакте, запустившего вашу игру. Можно получить из вызова метода GetUserInfo из `vkModule.lua` на старте игры 
     local activity_id = 2 -- 1 — достигнут новый уровень, работает аналогично secure.setUserLevel; 2 — заработано новое число очков;
     -- !!! Каждую миссию можно сохранить только один раз, при повторном вызове вернется ошибка. 
     local score = 7
-    self.vk.VkIntegrationApiSetScore('https://my.awesome.games.net', 443, 'z7Gbe81', user_id, score, activity_id, function(self, id, response) 
+self.vk.VkIntegrationApiSetScore(VK_CONFIG_INTEGRATION_SERVICE_HOST, VK_CONFIG_INTEGRATION_SERVICE_PORT, VK_CONFIG_SECRET_PATH, VK_CONFIG_API_ID, VK.user_id, PLAYER_DATA.platforms_visited, 2, function(self, id, response)
+    self.vk.VkIntegrationApiSetScore('https://my.awesome.games.net', 443, 'z7Gbe81', api_id, user_id, score, activity_id, function(self, id, response) 
         -- Можно вызвать здесь свою логику по завершении метода
         -- Успешно выполненный метод вернёт в этот колбек response.status = 200 и response.response = '{"response":7}' , где 7 - число начисленных очков
         print(response.status, response.response)
